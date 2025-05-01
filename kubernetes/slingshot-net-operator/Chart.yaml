@@ -1,0 +1,6 @@
+apiVersion: v2
+name: sshot-net-operator-helm-charts
+description: Helm chart for sshot-net-operator
+type: application
+version: 999.999.999
+appVersion: 1.0.0

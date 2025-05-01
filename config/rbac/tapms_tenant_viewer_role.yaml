@@ -1,0 +1,28 @@
+# (C) Copyright Hewlett Packard Enterprise Development LP
+# permissions for end users to view tenants.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: tenant-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: sshot-net-operator
+    app.kubernetes.io/part-of: sshot-net-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: tenant-viewer-role
+rules:
+- apiGroups:
+  - tapms.hpe.com
+  resources:
+  - tenants
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - tapms.hpe.com
+  resources:
+  - tenants/status
+  verbs:
+  - get

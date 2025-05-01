@@ -1,0 +1,32 @@
+# (C) Copyright Hewlett Packard Enterprise Development LP
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sshot-net-operator
+  namespace: sshot-net-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: sshot-net-operator
+  template:
+    metadata:
+      labels:
+        name: sshot-net-operator
+    spec:
+      serviceAccountName: sshot-net-operator
+      containers:
+        - name: sshot-net-operator
+          image: arti.hpc.amslabs.hpecorp.net/slingshot-internal-docker-unstable-local/sshot-net-operator:1.0.0
+          imagePullPolicy: Always
+          env:
+            - name: SKIP_TLS_VERIFY
+              value: "true"
+            - name: CLIENT_ID
+              value: "system-slingshot-client"
+            - name: SECRET_NAME
+              value: "system-slingshot-client-auth"
+            - name: NAMESPACE
+              value: "sshot-net-operator"
+            - name: ADMINISTRATIVE_STATE
+              value: "disable"

@@ -1,0 +1,11 @@
+# (C) Copyright Hewlett Packard Enterprise Development LP
+apiVersion: slingshot.hpe.com/v1alpha1
+kind: SlingshotTenant
+metadata:
+  labels:
+  name: example-slingshot-tenant-2
+  namespace: slingshot-tenants
+spec:
+  tenantname: ExampleTenant2
+  vnipartition:
+    vniRanges: ["4000-7000"]

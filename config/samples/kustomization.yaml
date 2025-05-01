@@ -1,0 +1,7 @@
+# (C) Copyright Hewlett Packard Enterprise Development LP
+## Append samples of your project ##
+resources:
+- tapms_v1alpha1_tenant.yaml
+- slingshot_v1alpha1_slingshottenant.yaml
+- tapms_v1alpha2_tenant.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples
