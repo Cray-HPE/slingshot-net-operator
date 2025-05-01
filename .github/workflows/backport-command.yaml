@@ -30,8 +30,7 @@ on:
  
 jobs:
   backport-command:
-    # On public repo, change this to "runs-on: ubuntu-latest"
-    runs-on: [self-hosted, self-hosted-small]
+    runs-on: ubuntu-latest
     if: github.event.issue.pull_request
     steps:
       - uses: Cray-HPE/backport-command-action@main

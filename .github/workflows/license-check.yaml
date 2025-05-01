@@ -28,8 +28,7 @@ on:
 
 jobs:
   license-check:
-    # On public repo, change this to "runs-on: ubuntu-latest"
-    runs-on: [self-hosted, self-hosted-small]
+    runs-on: ubuntu-latest
     container:
       image: artifactory.algol60.net/csm-docker/stable/license-checker:latest
       credentials:
