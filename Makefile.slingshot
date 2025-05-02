@@ -1,0 +1,22 @@
+# -*- mode: makefile -*-
+
+CONTAINER_CMD=podman
+PRIVATE_UNSHARED=:Z
+SLINGSHOT_BUILD_CONTAINER=arti.hpc.amslabs.hpecorp.net/baseos-docker-master-local/golang:1.22-alpine
+
+.PHONY: build clean test debug lint
+
+build:
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -o sshot-net-operator cmd/main.go
+
+test:
+	go test $$(go list ./... )
+
+clean:
+	rm -rf sshot-net-operator pkg bin/controller-gen
+
+lint:
+	golangci-lint run -v || true
+
+debug:
+	${CONTAINER_CMD} run -it -v ${PWD}:${HOME}${PRIVATE_UNSHARED} ${SLINGSHOT_BUILD_CONTAINER} /bin/sh

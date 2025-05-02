@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Values.deployment.name}}
+  namespace: {{.Release.Namespace}}
+  labels:
+    app.kubernetes.io/managed-by: {{.Release.Service}}
+  annotations:
+    meta.helm.sh/release-name: {{.Release.Name}}
+    meta.helm.sh/release-namespace: {{.Release.Namespace}}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: {{.Values.deployment.name}}
+  template:
+    metadata:
+      labels:
+        name: {{.Values.deployment.name}}
+    spec:
+      serviceAccountName: {{.Values.serviceAccount.name}}
+      containers:
+        - name: {{.Values.deployment.name}}
+          image: "{{.Values.image.repository}}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{.Values.image.pullPolicy}}
+          env:
+            - name: SKIP_TLS_VERIFY
+              value: "{{.Values.deployment.env.skipTlsVerify}}"
+            - name: CLIENT_ID
+              value: "{{.Values.deployment.env.clientId}}"
+            - name: SECRET_NAME
+              value: "{{.Values.deployment.env.secret}}"
+            - name: NAMESPACE
+              value: "{{.Values.deployment.env.namespace}}"
+            - name: ADMINISTRATIVE_STATE
+              value: "{{.Values.deployment.env.operatorMode}}"

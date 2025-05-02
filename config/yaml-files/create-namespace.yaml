@@ -1,0 +1,14 @@
+# (C) Copyright Hewlett Packard Enterprise Development LP
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sshot-net-operator
+  labels:
+    name: sshot-net-operator
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: slingshot-tenants
+  labels:
+    name: slingshot-tenants

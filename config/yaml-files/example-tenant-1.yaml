@@ -1,0 +1,20 @@
+# (C) Copyright Hewlett Packard Enterprise Development LP
+apiVersion: tapms.hpe.com/v1alpha1
+kind: Tenant
+metadata:
+  labels:
+  name: example-tenant-1
+  namespace: tenants
+spec:
+  tenantname: ExampleTenant1
+  childnamespaces:
+    - "child-ns1-v1alpha1"
+    - "child-ns2-v1alpha1"
+  tenantresources:
+    - type: "ExampleResourceTypeV1Alpha1"
+      enforceexclusivehsmgroups: true
+      xnames:
+        - "xname-1"
+      hsmgrouplabel: "ExampleLabelV1Alpha1"
+      hsmpartitionname: "ExamplePartitionV1alpha1"
+

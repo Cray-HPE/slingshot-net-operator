@@ -1,0 +1,32 @@
+# (C) Copyright Hewlett Packard Enterprise Development LP
+# permissions for end users to edit slingshottenants.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: slingshottenant-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: sshot-net-operator
+    app.kubernetes.io/part-of: sshot-net-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: slingshottenant-editor-role
+rules:
+- apiGroups:
+  - slingshot.hpe.com
+  resources:
+  - slingshottenants
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - slingshot.hpe.com
+  resources:
+  - slingshottenants/status
+  verbs:
+  - get

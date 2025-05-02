@@ -1,0 +1,59 @@
+# (C) Copyright Hewlett Packard Enterprise Development LP
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: manager-role
+rules:
+- apiGroups:
+  - slingshot.hpe.com.hpe.com
+  resources:
+  - slingshottenants
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - slingshot.hpe.com.hpe.com
+  resources:
+  - slingshottenants/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - slingshot.hpe.com.hpe.com
+  resources:
+  - slingshottenants/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - tapms.hpe.com.hpe.com
+  resources:
+  - tenants
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - tapms.hpe.com.hpe.com
+  resources:
+  - tenants/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - tapms.hpe.com.hpe.com
+  resources:
+  - tenants/status
+  verbs:
+  - get
+  - patch
+  - update

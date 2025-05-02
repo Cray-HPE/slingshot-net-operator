@@ -1,0 +1,30 @@
+# Default values for sshot-net-operator-helm-charts.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+image:
+  repository: cray/slingshot-network-operator
+  pullPolicy: Always
+slingshotTenantNamespace: slingshot-tenants
+deployment:
+  name: sshot-net-operator
+  env:
+    skipTlsVerify: "true"
+    clientId: "system-slingshot-client"
+    secret: "system-slingshot-client-auth"
+    namespace: "services"
+    operatorMode: "disable"
+  volumeMounts:
+    name: ca-public-key
+    mountPath: /var/run/configmap/ca-public-key.pem
+    subPath: certificate_authority.crt
+  volumes:
+    name: ca-public-key
+    configMapName: cray-configmap-ca-public-key
+serviceAccount:
+  name: sshot-net-operator
+clusterRoleBinding:
+  name: sshot-net-operator-rolebinding
+clusterRole:
+  name: sshot-net-operator-role
